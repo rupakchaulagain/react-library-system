@@ -1,7 +1,7 @@
 import React, {useState}  from 'react';
 
 import AddBookForm from './components/AddBookForm'
-// import AssignBookForm from './components/AssignBookForm'
+import AssignBookForm from './components/AssignBookForm'
 
 import { Tabs, Tab } from 'react-bootstrap';
 
@@ -29,7 +29,7 @@ function App() {
   
               <Tab eventKey="assignBook" title="Assign Book">
   
-              {/* <AssignBookForm/> */}
+              <AssignBookForm/>
   
               </Tab>
            

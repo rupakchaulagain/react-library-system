@@ -160,7 +160,7 @@ class AddBookForm extends React.Component{
 
         return(
 
-   <div class="container">
+   <div className="container">
     <div className="row">
      <div className="col-sm-4">
 
@@ -188,7 +188,7 @@ class AddBookForm extends React.Component{
      <br></br>
   
     </div>
-    <div class="col-sm-8">
+    <div className="col-sm-8">
 
     {this.state.alertStatus ? (
     <Alert variant="success" onClose={this.closeAlert} dismissible>

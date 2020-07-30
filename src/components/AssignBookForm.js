@@ -1,77 +1,170 @@
-// import React from 'react'
+import React from 'react'
+import AssignBookTable from './AssignBookTable'
 
-// import AssignBookTable from './AssignBookTable'
+class  AssignBookForm extends React.Component{
 
-// function  AssignBookForm(){
+    constructor() {
+        super();
 
-//   const bookCategory=["Non-Fiction,Fiction"];
+        this.state = {
+          bookName:'',
+          bookCategoryId:'',
+          bookCategoryValue: '',
+          categoryList: [],
+          bookCategory: [
+        {
+              key: 1,
+              value: "Non-Fiction"
+        },
+        {
+            key: 2,
+            value: "Fiction"
+        },
+        {
+            key: 3,
+            value: "Science Fiction"
+        },
+        {
+            key: 4,
+            value: "Biography"
+        }
 
-//   this.state = {
-//     categoryList: []
-//   }
+    ],
+    bookCategorySearch:'',
 
+      }
 
-//   this.handleInputChange = (e) => {
-      
-//     console.log("handleInputChange")
+    }
 
-//     const{name, value}=e.target
+  handleInputChange = (e) => {
+
+    const{name, value}=e.target
+
    
-//     this.setState({
-//      [name]: value
-//     })
-   
+    this.setState({
+     [name]: value
+    })
 
-//   };
+    console.log(name+":"+value)
 
-//   this.handleFormSubmit = (e) => {
-//     e.preventDefault();
+  }
 
-//     console.log("handleFormSubmit");
+  handleFormSubmit = (e) => {
+    e.preventDefault();
 
-//     let categoryList = [...this.state.categoryList];
+    console.log("handleFormSubmit");
 
-//     categoryList.push({
-//       bookName: this.state.bookName,
-//       bookCategory: this.state.bookCategory
-//     });
+    let categoryList = [...this.state.categoryList];
 
-//     this.setState({
-//       categoryList
-//     });
+    let categoryType="";
+    this.state.bookCategory.map((category, index) => {
 
-//   };
+      if(category.key===parseInt(this.state.bookCategoryId)){
 
+          console.log("Matched Category..."+category.value)
 
+          categoryType=category.value;
+      }
+  })
 
+    categoryList.push({
+      bookName: this.state.bookName,
+      bookCategoryId: this.state.bookCategoryId,
+      bookCategoryValue: categoryType 
+    });
 
+    this.setState({
+      categoryList,
+      bookName:'',
+      bookCategoryId:'',
+      bookCategoryValue: ''
+    });
 
-//     return(
+  };
 
-//         <div className="row">
+  filterBookCategory=(e)=>{
+
+    const{name, value}=e.target
+
+    this.setState({
+      [name]: value
+     })
+ 
+     console.log(name+":"+value)
+
+     let categoryList = [...this.state.categoryList];
+
+     let filteredList=[]
+
+     categoryList.map((category, index) => {
+ 
+       if(category.key===parseInt(value)){
+ 
+           console.log("Matched Category..."+category.value)
+ 
+           filteredList.push({
+            bookName: category.bookName,
+            bookCategoryId: category.key,
+            bookCategoryValue: category.value 
+          });
+       }
+   })
+
+   this.setState({
+    categoryList: filteredList,
+    bookName:'',
+    bookCategoryId:'',
+    bookCategoryValue: '',
+    bookCategory: this.state.bookCategory
+  });
+
     
-//       <form onSubmit={this.handleFormSubmit}>
-//       <div className="form-group">
-//       <label>Book Name:</label>
-//         <input type="text" className="form-control" name="bookName" value={this.state.bookName}  onChange={this.handleInputChange} aria-describedby="emailHelp"/>
-//       </div>
-//       <div className="form-group">
-//         <label>Book Category:</label>
-//         <input type="text" className="form-control" name="bookCategory" value={this.state.bookCategory}  onChange={this.handleInputChange} aria-describedby="emailHelp"/>
-//       </div>
-    
-//       <button type="submit" className="btn btn-primary">Assign</button>
-//     </form>
 
-//     <br></br>
+  }
 
-//     <AssignBookTable categoryList={this.state.categoryList}/>
+render(){
+    return(
+
+    <div className="row">
     
-//     </div>
+      <form onSubmit={this.handleFormSubmit}>
+      <div className="form-group">
+      <label>Book Name:</label>
+        <input type="text" className="form-control"  placeholder="Enter Book Name" required="required"
+         name="bookName" value={this.state.bookName}  onChange={this.handleInputChange} aria-describedby="emailHelp"/>
+      </div>
+      <div className="form-group">
+        <label>Book Category:</label>
+
+    <select  className="form-control" name="bookCategoryId" required="required"
+    onClick={this.handleInputChange}>
+
+   {this.state.bookCategory.map(category => {
+           return (
+           <option value={category.key}>{category.value}</option>
+           )
+         })}
+
+      </select>
+
+      </div>
+    
+      <button type="submit" className="btn btn-primary">Assign</button>
+    </form>
+
+    <br></br>
+
+    <AssignBookTable
+    bookCategorySearch={this.state.bookCategorySearch}
+     categoryList={this.state.categoryList}
+     bookCategory={this.state.bookCategory}
+     filterBookCategory={this.filterBookCategory}
+     />
+    
+    </div>
         
-//     )
+    )
+    }
+}
 
-
-// }
-
-// export default AssignBookForm;
+export default AssignBookForm;
