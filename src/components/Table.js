@@ -63,8 +63,8 @@ function Table(props){
                                         <td>{book.bookAuthor}</td>
                                         <td>{book.bookPublishedDate}</td>
                                         <td>
-                                        <Button variant="primary" onClick={book =>props.editBook(index)}>Edit</Button>{' '}
-                                        <Button variant="danger" onClick={index =>props.deleteBook(index)}>Delete</Button>{' '}
+                                        <Button variant="primary" onClick={()=>props.editBook(index)}>Edit</Button>{' '}
+                                        <Button variant="danger" onClick={() =>props.deleteBook(index)}>Delete</Button>{' '}
                                         </td>
                                     </tr>
                                 )

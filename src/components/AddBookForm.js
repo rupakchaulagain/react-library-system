@@ -94,9 +94,11 @@ class AddBookForm extends React.Component{
       };
 
 
-      editBook =index=> {
+      editBook =(index)=> {
     
         var book = this.state.bookList[index];
+        
+        console.log(book)
 
         this.setState({
           bookName: book.bookName,
@@ -114,6 +116,7 @@ class AddBookForm extends React.Component{
       deleteBook =index=> {
 
         console.log(index)
+
     
         const i = this.state.bookList.indexOf(index)
         this.state.bookList.splice(i, 1)
@@ -131,7 +134,6 @@ class AddBookForm extends React.Component{
         return(
 
           <div className="row">
-        
           <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label>Name</label>
