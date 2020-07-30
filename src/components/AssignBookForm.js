@@ -98,14 +98,14 @@ class  AssignBookForm extends React.Component{
 
      categoryList.map((category, index) => {
  
-       if(category.key===parseInt(value)){
+       if(category.bookCategoryId===value){
  
            console.log("Matched Category..."+category.value)
  
            filteredList.push({
             bookName: category.bookName,
             bookCategoryId: category.key,
-            bookCategoryValue: category.value 
+            bookCategoryValue: category.bookCategoryValue 
           });
        }
    })
