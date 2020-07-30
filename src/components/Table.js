@@ -11,7 +11,7 @@ function Table(props){
   console.log("books="+JSON.stringify(bookList))
 
 
-    if(bookList===null || (typeof AddBookForm === 'undefined')){
+    if(bookList===null || bookList.length===0 || (typeof AddBookForm === 'undefined')){
 
       return(
 
@@ -27,12 +27,10 @@ function Table(props){
           </thead>
           <tbody>
         
-          
-                                return (
                                     <tr>
-                                        <td>No Record Found...</td>
+                                        <h1>No Record Found...</h1>
                                     </tr>
-                                )
+                                
         
           </tbody>
         </table>

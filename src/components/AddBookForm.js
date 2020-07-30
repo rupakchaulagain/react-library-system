@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Table from './Table'
+import Alert from 'react-bootstrap/Alert';
 
 class AddBookForm extends React.Component{
 
@@ -11,6 +12,7 @@ class AddBookForm extends React.Component{
           bookName: "",
           bookAuthor: "",
           bookPublishedDate: "",
+          // bookList: [],
           bookList: [
             {
               bookName: "Welcome to the future",
@@ -19,21 +21,22 @@ class AddBookForm extends React.Component{
             },
             {
               bookName: "Science",
-              bookAuthor: "St. XYZ",
+              bookAuthor: "Rupak Chaulagain",
               bookPublishedDate:  "2016/12/04",
             },
           ],
           submitBtn:'Add',
-          submitFlag:''
+          submitFlag:'',
+          alertMessage: '',
+          alertStatus: false
+          
         }
 
-      this.handleInputChange=this.handleInputChange.bind(this)
+      // this.handleInputChange=this.handleInputChange.bind(this)
     
       }
 
       handleInputChange = (e) => {
-      
-        // console.log("handleInputChange")
 
         const{name, value}=e.target
        
@@ -61,8 +64,9 @@ class AddBookForm extends React.Component{
           bookList,
           bookName: "",
           bookAuthor: "",
-          bookPublishedDate: ""
-
+          bookPublishedDate: "",
+          alertMessage: "Book is added successfully...",
+          alertStatus: true
         });
 
       }
@@ -70,7 +74,7 @@ class AddBookForm extends React.Component{
       //update Logic
       if(this.state.submitFlag==='U'){     
 
-            var book = this.state.bookList[(this.state.currentIndex)]
+            let book = this.state.bookList[(this.state.currentIndex)]
 
             console.log(book.bookName);
             book.bookName= this.state.bookName
@@ -83,11 +87,11 @@ class AddBookForm extends React.Component{
               bookAuthor: "",
               bookPublishedDate: "",
               submitBtn:'Add',
-              submitFlag:''
+              submitFlag:'',
+              alertMessage: "Book is updated successfully...",
+              alertStatus: true
     
             });
-          
-
 
       }
 
@@ -96,7 +100,7 @@ class AddBookForm extends React.Component{
 
       editBook =(index)=> {
     
-        var book = this.state.bookList[index];
+        let book = this.state.bookList[index];
         
         console.log(book)
 
@@ -104,6 +108,7 @@ class AddBookForm extends React.Component{
           bookName: book.bookName,
           bookAuthor: book.bookAuthor,
           bookPublishedDate: book.bookPublishedDate,
+          alertStatus:false,
           submitBtn: 'Update',
           submitFlag:'U',
           currentIndex: index
@@ -116,25 +121,50 @@ class AddBookForm extends React.Component{
       deleteBook =index=> {
 
         console.log(index)
-
-    
-        const i = this.state.bookList.indexOf(index)
-        this.state.bookList.splice(i, 1)
+        // debugger;;
+        this.state.bookList.splice(index, 1)
 
         this.setState({
-          bookList: this.state.bookList
+          bookList: this.state.bookList,
+          bookName: "",
+          bookAuthor: "",
+          bookPublishedDate: "",
+          submitBtn: 'Add',
+          submitFlag:'',
+          alertMessage: "Book is deleted successfully...",
+          alertStatus: true
+
         });
+        
 
         console.log("Result="+JSON.stringify(this.state.bookList))
     
       }
 
+      closeAlert=()=>{
+        this.setState({
+          alertStatus:false
+        });
+
+      }
+
+
+      componentDidUpdate(){
+        setTimeout(() => this.setState({
+          alertStatus: false
+        }), 4000);
+      }
+
+
     render(){
 
         return(
 
-          <div className="row">
-          <form onSubmit={this.handleFormSubmit}>
+   <div class="container">
+    <div className="row">
+     <div className="col-sm-4">
+
+     <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label>Name</label>
             <input type="text" className="form-control" placeholder="Enter Book Name" required="required"
@@ -156,12 +186,47 @@ class AddBookForm extends React.Component{
           <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
         </form>
      <br></br>
+  
+    </div>
+    <div class="col-sm-8">
 
-      <Table bookList={this.state.bookList}
+    {this.state.alertStatus ? (
+    <Alert variant="success" onClose={this.closeAlert} dismissible>
+          <Alert.Heading>Success Alert</Alert.Heading>
+          <p>
+            {this.state.alertMessage}
+          </p>
+        </Alert>
+    ):""
+
+}
+
+{/* {this.state.updateAlert ? (
+    <Alert variant="success" onClose={this.closeAlert} dismissible>
+          <Alert.Heading>Success Alert</Alert.Heading>
+          <p>
+            Book is added successfully...
+          </p>
+        </Alert>
+    ):""
+
+} */}
+
+     
+    </div>
+   
+  </div>
+
+  <Table bookList={this.state.bookList}
       deleteBook={this.deleteBook}
       editBook={this.editBook}/>
 
-        </div>
+
+</div>
+
+         
+         
+      
             
         );
 

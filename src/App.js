@@ -8,7 +8,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 
 function App() {
 
-  //
+  //hook to create state in functional component
       const [key, setKey] = useState('home');
 
       return(
