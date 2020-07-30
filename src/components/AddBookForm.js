@@ -3,205 +3,206 @@ import React from 'react'
 import Table from './Table'
 import Alert from 'react-bootstrap/Alert';
 
-class AddBookForm extends React.Component{
+class AddBookForm extends React.Component {
 
     constructor() {
         super();
-    
         this.state = {
-          bookName: "",
-          bookAuthor: "",
-          bookPublishedDate: "",
-          // bookList: [],
-          bookList: [
-            {
-              bookName: "Welcome to the future",
-              bookAuthor: "By Not Elon Musk",
-              bookPublishedDate: "2020/12/04",
-            },
-            {
-              bookName: "Science",
-              bookAuthor: "Rupak Chaulagain",
-              bookPublishedDate:  "2016/12/04",
-            },
-          ],
-          submitBtn:'Add',
-          submitFlag:'',
-          alertMessage: '',
-          alertStatus: false
-          
+            bookName: "",
+            bookAuthor: "",
+            bookPublishedDate: "",
+            bookList: [
+                {
+                    bookName: "Welcome to the future",
+                    bookAuthor: "By Not Elon Musk",
+                    bookPublishedDate: "2020/12/04",
+                },
+                {
+                    bookName: "Science",
+                    bookAuthor: "Rupak Chaulagain",
+                    bookPublishedDate: "2016/12/04",
+                },
+            ],
+            submitBtn: 'Add',
+            submitFlag: '',
+            alertMessage: '',
+            alertStatus: false
+
         }
 
-      // this.handleInputChange=this.handleInputChange.bind(this)
-    
-      }
+    }
 
-      handleInputChange = (e) => {
+    handleInputChange = (e) => {
 
-        const{name, value}=e.target
-       
+        const {name, value} = e.target
+
         this.setState({
-         [name]: value
+            [name]: value
         })
-       
 
-      };
 
-      handleFormSubmit = (e) => {
+    };
+
+    handleFormSubmit = (e) => {
         e.preventDefault();
 
-        if(this.state.submitFlag===''){
-    
-        let bookList = [...this.state.bookList];
-    
-        bookList.push({
-          bookName: this.state.bookName,
-          bookAuthor: this.state.bookAuthor,
-          bookPublishedDate: this.state.bookPublishedDate
-        });
-    
-        this.setState({
-          bookList,
-          bookName: "",
-          bookAuthor: "",
-          bookPublishedDate: "",
-          alertMessage: "Book is added successfully...",
-          alertStatus: true
-        });
+        if (this.state.submitFlag === '') {
 
-      }
+            let bookList = [...this.state.bookList];
 
-      //update Logic
-      if(this.state.submitFlag==='U'){     
+            bookList.push({
+                bookName: this.state.bookName,
+                bookAuthor: this.state.bookAuthor,
+                bookPublishedDate: this.state.bookPublishedDate
+            });
+
+            this.setState({
+                bookList,
+                bookName: "",
+                bookAuthor: "",
+                bookPublishedDate: "",
+                alertMessage: "Book is added successfully...",
+                alertStatus: true
+            });
+
+        }
+
+        //update Logic
+        if (this.state.submitFlag === 'U') {
 
             let book = this.state.bookList[(this.state.currentIndex)]
 
             console.log(book.bookName);
-            book.bookName= this.state.bookName
-            book.bookAuthor= this.state.bookAuthor
-            book.bookPublishedDate= this.state.bookPublishedDate
+            book.bookName = this.state.bookName
+            book.bookAuthor = this.state.bookAuthor
+            book.bookPublishedDate = this.state.bookPublishedDate
 
             this.setState({
-              bookList:this.state.bookList,
-              bookName: "",
-              bookAuthor: "",
-              bookPublishedDate: "",
-              submitBtn:'Add',
-              submitFlag:'',
-              alertMessage: "Book is updated successfully...",
-              alertStatus: true
-    
+                bookList: this.state.bookList,
+                bookName: "",
+                bookAuthor: "",
+                bookPublishedDate: "",
+                submitBtn: 'Add',
+                submitFlag: '',
+                alertMessage: "Book is updated successfully...",
+                alertStatus: true
+
             });
 
-      }
+        }
 
-      };
+    };
 
 
-      editBook =(index)=> {
-    
+    editBook = (index) => {
+
         let book = this.state.bookList[index];
-        
+
         console.log(book)
 
         this.setState({
-          bookName: book.bookName,
-          bookAuthor: book.bookAuthor,
-          bookPublishedDate: book.bookPublishedDate,
-          alertStatus:false,
-          submitBtn: 'Update',
-          submitFlag:'U',
-          currentIndex: index
+            bookName: book.bookName,
+            bookAuthor: book.bookAuthor,
+            bookPublishedDate: book.bookPublishedDate,
+            alertStatus: false,
+            submitBtn: 'Update',
+            submitFlag: 'U',
+            currentIndex: index
         });
-    
-    
-      }
 
 
-      deleteBook =index=> {
+    }
+
+
+    deleteBook = index => {
 
         console.log(index)
         // debugger;;
         this.state.bookList.splice(index, 1)
 
         this.setState({
-          bookList: this.state.bookList,
-          bookName: "",
-          bookAuthor: "",
-          bookPublishedDate: "",
-          submitBtn: 'Add',
-          submitFlag:'',
-          alertMessage: "Book is deleted successfully...",
-          alertStatus: true
+            bookList: this.state.bookList,
+            bookName: "",
+            bookAuthor: "",
+            bookPublishedDate: "",
+            submitBtn: 'Add',
+            submitFlag: '',
+            alertMessage: "Book is deleted successfully...",
+            alertStatus: true
 
         });
-        
 
-        console.log("Result="+JSON.stringify(this.state.bookList))
-    
-      }
 
-      closeAlert=()=>{
+        console.log("Result=" + JSON.stringify(this.state.bookList))
+
+    }
+
+    closeAlert = () => {
         this.setState({
-          alertStatus:false
+            alertStatus: false
         });
 
-      }
+    }
 
 
-      componentDidUpdate(){
+    componentDidUpdate() {
         setTimeout(() => this.setState({
-          alertStatus: false
+            alertStatus: false
         }), 4000);
-      }
+    }
 
 
-    render(){
+    render() {
 
-        return(
+        return (
 
-   <div className="container">
-    <div className="row">
-     <div className="col-sm-4">
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-4">
 
-     <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
-            <label>Name</label>
-            <input type="text" className="form-control" placeholder="Enter Book Name" required="required"
-             name="bookName" value={this.state.bookName}  onChange={this.handleInputChange}/>
-          </div>
-          <div className="form-group">
-            <label>Author</label>
-            <input type="text" className="form-control" placeholder="Enter Author Name" required="required"
-             name="bookAuthor" value={this.state.bookAuthor}  onChange={this.handleInputChange}/>
-          </div>
-        
-          <div className="form-group">
-            <label>Published Date</label>
-            <input type="text" className="form-control" placeholder="Enter Published Date" required="required"
-             name="bookPublishedDate" value={this.state.bookPublishedDate}  onChange={this.handleInputChange}/>
-          </div>
+                        <form onSubmit={this.handleFormSubmit}>
+                            <div className="form-group">
+                                <label>Name</label>
+                                <input type="text" className="form-control" placeholder="Enter Book Name"
+                                       required="required"
+                                       name="bookName" value={this.state.bookName} onChange={this.handleInputChange}/>
+                            </div>
+                            <div className="form-group">
+                                <label>Author</label>
+                                <input type="text" className="form-control" placeholder="Enter Author Name"
+                                       required="required"
+                                       name="bookAuthor" value={this.state.bookAuthor}
+                                       onChange={this.handleInputChange}/>
+                            </div>
 
-         
-          <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
-        </form>
-     <br></br>
-  
-    </div>
-    <div className="col-sm-8">
+                            <div className="form-group">
+                                <label>Published Date</label>
+                                <input type="text" className="form-control" placeholder="Enter Published Date"
+                                       required="required"
+                                       name="bookPublishedDate" value={this.state.bookPublishedDate}
+                                       onChange={this.handleInputChange}/>
+                            </div>
 
-    {this.state.alertStatus ? (
-    <Alert variant="success" onClose={this.closeAlert} dismissible>
-          <Alert.Heading>Success Alert</Alert.Heading>
-          <p>
-            {this.state.alertMessage}
-          </p>
-        </Alert>
-    ):""
 
-}
+                            <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
+                        </form>
+                        <br></br>
 
-{/* {this.state.updateAlert ? (
+                    </div>
+                    <div className="col-sm-8">
+
+                        {this.state.alertStatus ? (
+                            <Alert variant="success" onClose={this.closeAlert} dismissible>
+                                <Alert.Heading>Success Alert</Alert.Heading>
+                                <p>
+                                    {this.state.alertMessage}
+                                </p>
+                            </Alert>
+                        ) : ""
+
+                        }
+
+                        {/* {this.state.updateAlert ? (
     <Alert variant="success" onClose={this.closeAlert} dismissible>
           <Alert.Heading>Success Alert</Alert.Heading>
           <p>
@@ -212,25 +213,22 @@ class AddBookForm extends React.Component{
 
 } */}
 
-     
-    </div>
-   
-  </div>
 
-  <Table bookList={this.state.bookList}
-      deleteBook={this.deleteBook}
-      editBook={this.editBook}/>
+                    </div>
+
+                </div>
+
+                <Table bookList={this.state.bookList}
+                       deleteBook={this.deleteBook}
+                       editBook={this.editBook}/>
 
 
-</div>
+            </div>
 
-         
-         
-      
-            
+
         );
 
-        }
+    }
 
 }
 
