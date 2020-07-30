@@ -3,6 +3,7 @@ import React from 'react'
 function Table(props){
 
   let categoryList = props.categoryList;
+  let filteredList = props.filteredList;
   let bookCategory = props.bookCategory;
 
   console.log(categoryList);
@@ -34,21 +35,31 @@ function Table(props){
   </thead>
   <tbody>
 
-  {
+  { filteredList!=null  ? (
+    
+    filteredList.map((filter, index) => {
+      return (
+          <tr>
+              <th scope="row">{index + 1}</th>
+              <td>{filter.bookCategoryValue}</td>
+              <td>{filter.bookName}</td>
+          </tr>
+      )
 
-categoryList.map((category, index) => {
-                        return (
-                            <tr>
-                                <th scope="row">{index + 1}</th>
-                                <td>{category.bookCategoryValue}</td>
-                                <td>{category.bookName}</td>
-                            </tr>
-                        )
+  })):  categoryList.map((category, index) => {
+                              return (
+                                  <tr>
+                                      <th scope="row">{index + 1}</th>
+                                      <td>{category.bookCategoryValue}</td>
+                                      <td>{category.bookName}</td>
+                                  </tr>
+                              )
+      
+                          })
+                        
+                        
+         }
 
-                    })
-                  
-
-   }
 
   </tbody>
 </table>

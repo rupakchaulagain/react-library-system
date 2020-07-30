@@ -96,27 +96,45 @@ class  AssignBookForm extends React.Component{
 
      let filteredList=[]
 
-     categoryList.map((category, index) => {
- 
-       if(category.bookCategoryId===value){
- 
-           console.log("Matched Category..."+category.value)
- 
-           filteredList.push({
-            bookName: category.bookName,
-            bookCategoryId: category.key,
-            bookCategoryValue: category.bookCategoryValue 
-          });
-       }
-   })
+     if(value==='-1'){
 
-   this.setState({
-    categoryList: filteredList,
-    bookName:'',
-    bookCategoryId:'',
-    bookCategoryValue: '',
-    bookCategory: this.state.bookCategory
-  });
+      this.setState({
+        categoryList,
+        filteredList:null,
+        bookName:'',
+        bookCategoryId:'',
+        bookCategoryValue: '',
+        bookCategory: this.state.bookCategory
+      });
+
+     }else{
+
+      categoryList.map((category, index) => {
+ 
+        if(category.bookCategoryId===value){
+  
+            console.log("Matched Category..."+category.value)
+  
+            filteredList.push({
+             bookName: category.bookName,
+             bookCategoryId: category.key,
+             bookCategoryValue: category.bookCategoryValue 
+           });
+        }
+    })
+
+    this.setState({
+      filteredList,
+      bookName:'',
+      bookCategoryId:'',
+      bookCategoryValue: '',
+      bookCategory: this.state.bookCategory
+    });
+
+     }
+
+  
+
 
     
 
@@ -157,6 +175,7 @@ render(){
     <AssignBookTable
     bookCategorySearch={this.state.bookCategorySearch}
      categoryList={this.state.categoryList}
+     filteredList={this.state.filteredList}
      bookCategory={this.state.bookCategory}
      filterBookCategory={this.filterBookCategory}
      />
