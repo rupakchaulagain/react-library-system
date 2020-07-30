@@ -18,6 +18,8 @@ function Table(props){
       <select  className="form-control" required="required"
     name="bookCategory"  onChange={props.filterBookCategory}>
 
+<option value="-1">All</option>
+
    {bookCategory.map(category => {
            return (
            <option key={category.key} value={category.key}>{category.value}</option>
