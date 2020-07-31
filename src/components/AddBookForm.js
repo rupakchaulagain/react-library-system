@@ -93,7 +93,6 @@ class AddBookForm extends React.Component {
 
     };
 
-
     editBook = (index) => {
 
         let book = this.state.bookList[index];
@@ -201,18 +200,6 @@ class AddBookForm extends React.Component {
                         ) : ""
 
                         }
-
-                        {/* {this.state.updateAlert ? (
-    <Alert variant="success" onClose={this.closeAlert} dismissible>
-          <Alert.Heading>Success Alert</Alert.Heading>
-          <p>
-            Book is added successfully...
-          </p>
-        </Alert>
-    ):""
-
-} */}
-
 
                     </div>
 
