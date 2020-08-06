@@ -30,6 +30,17 @@ class AddBookForm extends React.Component {
 
         }
 
+        let d=[]
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(data => {
+                console.log("res="+data)
+
+                d= data
+                console.log("d=",d)
+            })
+
+
     }
 
     handleInputChange = (e) => {
@@ -109,9 +120,7 @@ class AddBookForm extends React.Component {
             currentIndex: index
         });
 
-
     }
-
 
     deleteBook = index => {
 
@@ -143,13 +152,11 @@ class AddBookForm extends React.Component {
 
     }
 
-
     componentDidUpdate() {
         setTimeout(() => this.setState({
             alertStatus: false
         }), 4000);
     }
-
 
     render() {
 
@@ -209,9 +216,7 @@ class AddBookForm extends React.Component {
                        deleteBook={this.deleteBook}
                        editBook={this.editBook}/>
 
-
             </div>
-
 
         );
 

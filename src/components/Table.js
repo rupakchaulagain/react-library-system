@@ -28,7 +28,7 @@ function Table(props){
           <tbody>
         
                                     <tr>
-                                        <h1>No Record Found...</h1>
+                                     <th> <h1>No Record Found...</h1></th>
                                     </tr>
                                 
         
