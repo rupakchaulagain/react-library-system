@@ -2,11 +2,15 @@ import React from 'react'
 
 import Table from './Table'
 import Alert from 'react-bootstrap/Alert';
+import BreadCumb from "../BreadCumb";
 
 class AddBookForm extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        console.log("prop data=" + props.data)
+
         this.state = {
             bookName: "",
             bookAuthor: "",
@@ -30,16 +34,7 @@ class AddBookForm extends React.Component {
 
         }
 
-        let d=[]
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(data => {
-                console.log("res="+data)
-
-                d= data
-                console.log("d=",d)
-            })
-
+        console.log(props)
 
     }
 
@@ -50,7 +45,6 @@ class AddBookForm extends React.Component {
         this.setState({
             [name]: value
         })
-
 
     };
 
@@ -140,7 +134,6 @@ class AddBookForm extends React.Component {
 
         });
 
-
         console.log("Result=" + JSON.stringify(this.state.bookList))
 
     }
@@ -161,64 +154,67 @@ class AddBookForm extends React.Component {
     render() {
 
         return (
+        <div>
+            <BreadCumb {...this.props} />
+            <div className="row">
+                <div className="col-sm-4">
 
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-4">
+                    <form onSubmit={this.handleFormSubmit}>
+                        <div className="form-group">
+                            <label>Name</label>
+                            <input type="text" className="form-control" placeholder="Enter Book Name"
+                                   required="required"
+                                   name="bookName" value={this.state.bookName} onChange={this.handleInputChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label>Author</label>
+                            <input type="text" className="form-control" placeholder="Enter Author Name"
+                                   required="required"
+                                   name="bookAuthor" value={this.state.bookAuthor}
+                                   onChange={this.handleInputChange}/>
+                        </div>
 
-                        <form onSubmit={this.handleFormSubmit}>
-                            <div className="form-group">
-                                <label>Name</label>
-                                <input type="text" className="form-control" placeholder="Enter Book Name"
-                                       required="required"
-                                       name="bookName" value={this.state.bookName} onChange={this.handleInputChange}/>
-                            </div>
-                            <div className="form-group">
-                                <label>Author</label>
-                                <input type="text" className="form-control" placeholder="Enter Author Name"
-                                       required="required"
-                                       name="bookAuthor" value={this.state.bookAuthor}
-                                       onChange={this.handleInputChange}/>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Published Date</label>
-                                <input type="text" className="form-control" placeholder="Enter Published Date"
-                                       required="required"
-                                       name="bookPublishedDate" value={this.state.bookPublishedDate}
-                                       onChange={this.handleInputChange}/>
-                            </div>
+                        <div className="form-group">
+                            <label>Published Date</label>
+                            <input type="text" className="form-control" placeholder="Enter Published Date"
+                                   required="required"
+                                   name="bookPublishedDate" value={this.state.bookPublishedDate}
+                                   onChange={this.handleInputChange}/>
+                        </div>
 
 
-                            <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
-                        </form>
-                        <br></br>
+                        <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
+                    </form>
+                    <br></br>
 
-                    </div>
-                    <div className="col-sm-8">
+                </div>
+                <div className="col-sm-8">
 
-                        {this.state.alertStatus ? (
-                            <Alert variant="success" onClose={this.closeAlert} dismissible>
-                                <Alert.Heading>Success Alert</Alert.Heading>
-                                <p>
-                                    {this.state.alertMessage}
-                                </p>
-                            </Alert>
-                        ) : ""
+                    {this.state.alertStatus ? (
+                        <Alert variant="success" onClose={this.closeAlert} dismissible>
+                            <Alert.Heading>Success Alert</Alert.Heading>
+                            <p>
+                                {this.state.alertMessage}
+                            </p>
+                        </Alert>
+                    ) : ""
 
-                        }
-
-                    </div>
+                    }
 
                 </div>
 
+            </div>
+
+            <div className="row">
                 <Table bookList={this.state.bookList}
                        deleteBook={this.deleteBook}
                        editBook={this.editBook}/>
 
             </div>
+        </div>
 
-        );
+    )
+        ;
 
     }
 
