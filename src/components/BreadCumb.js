@@ -9,7 +9,7 @@ const BreadCumb=(props)=>{
 
         <Breadcrumb>
             <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-            <Breadcrumb.Item active href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+            <Breadcrumb.Item href={props?.data?.path}>
                 {props?.data?.menu}
             </Breadcrumb.Item>
             {/*<Breadcrumb.Item active>Data</Breadcrumb.Item>*/}

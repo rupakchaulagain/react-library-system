@@ -11,7 +11,7 @@ function Table(props) {
     const NoBookFound = () => {
         return (
             <tr>
-                <th><h1>No Book found...</h1></th>
+                <th><h1>No Books found...</h1></th>
             </tr>
         )
 

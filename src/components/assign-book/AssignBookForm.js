@@ -40,20 +40,14 @@ class AssignBookForm extends React.Component {
     handleInputChange = (e) => {
 
         const {name, value} = e.target
-
-
         this.setState({
             [name]: value
         })
-
-        console.log(name + ":" + value)
 
     }
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-
-        console.log("handleFormSubmit");
 
         let categoryList = [...this.state.categoryList];
 
