@@ -32,6 +32,18 @@ const Dashboard = (props) => {
                         <Button href="/assignBookForm" variant="primary">View</Button>{' '}
                     </Card.Footer>
                 </Card>
+
+                <Card style={{width: '18rem'}}>
+                    <Card.Body>
+                        <Card.Title>Users</Card.Title>
+                        <Card.Text>
+                            0{' '}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                        <Button href="/assignBookForm" variant="primary">View</Button>{' '}
+                    </Card.Footer>
+                </Card>
             </CardDeck>
         </div>
     )

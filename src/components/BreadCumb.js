@@ -1,9 +1,9 @@
 import React from "react";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-const BreadCumb=(props)=>{
+const BreadCrumb=(props)=>{
 
-    console.log("breadcumb=",props)
+    console.log("breadcrumb=",props)
 
     return(
 
@@ -18,4 +18,4 @@ const BreadCumb=(props)=>{
 
 }
 
-export default BreadCumb;
+export default BreadCrumb;

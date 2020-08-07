@@ -161,13 +161,13 @@ class AddBookForm extends React.Component {
 
                     <form onSubmit={this.handleFormSubmit}>
                         <div className="form-group">
-                            <label>Name</label>
+                            <label>Name*</label>
                             <input type="text" className="form-control" placeholder="Enter Book Name"
                                    required="required"
                                    name="bookName" value={this.state.bookName} onChange={this.handleInputChange}/>
                         </div>
                         <div className="form-group">
-                            <label>Author</label>
+                            <label>Author*</label>
                             <input type="text" className="form-control" placeholder="Enter Author Name"
                                    required="required"
                                    name="bookAuthor" value={this.state.bookAuthor}
@@ -175,13 +175,12 @@ class AddBookForm extends React.Component {
                         </div>
 
                         <div className="form-group">
-                            <label>Published Date</label>
+                            <label>Published Date*</label>
                             <input type="text" className="form-control" placeholder="Enter Published Date"
                                    required="required"
                                    name="bookPublishedDate" value={this.state.bookPublishedDate}
                                    onChange={this.handleInputChange}/>
                         </div>
-
 
                         <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
                     </form>
