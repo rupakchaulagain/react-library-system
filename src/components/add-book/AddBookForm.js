@@ -2,7 +2,6 @@ import React from 'react'
 
 import Table from './Table'
 import Alert from 'react-bootstrap/Alert';
-import BreadCumb from "../BreadCumb";
 
 class AddBookForm extends React.Component {
 
@@ -155,7 +154,6 @@ class AddBookForm extends React.Component {
 
         return (
         <div>
-            <BreadCumb {...this.props} />
             <div className="row">
                 <div className="col-sm-4">
 

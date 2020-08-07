@@ -1,6 +1,5 @@
 import React from 'react'
 import AssignBookTable from './AssignBookTable'
-import BreadCumb from "../BreadCumb";
 
 class AssignBookForm extends React.Component {
 
@@ -134,7 +133,6 @@ class AssignBookForm extends React.Component {
         return (
             <div>
 
-                <BreadCumb {...this.props}/>
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                         <label>Book Name:</label>

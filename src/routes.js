@@ -1,9 +1,9 @@
-import React from "react";
 import Dashboard from "./components/Dashboard";
 import AddBookForm from "./components/add-book/AddBookForm";
 import AssignBookForm from "./components/assign-book/AssignBookForm";
 import Test from "./components/test/Test";
 import AddUserForm from "./components/user/AddUserForm";
+import ReadBook from "./components/ReadBook";
 
 const routes = [
     {
@@ -12,18 +12,6 @@ const routes = [
         menu: "Dashboard",
         main: Dashboard
     },
-    // {
-    //     path: "/login",
-    //     exact: true,
-    //     menu: "Login",
-    //     main: Login
-    // },
-    // {
-    //     path: "/logout",
-    //     exact: true,
-    //     menu: "Logout",
-    //     main: Logout
-    // },
     {
         path: "/addBookForm",
         exact: true,
@@ -47,6 +35,12 @@ const routes = [
         exact: true,
         menu: "Components",
         main: Test
+    },
+    {
+        path: "/readBook/:bookName",
+        exact: true,
+        menu: "Read Book",
+        main: ReadBook
     },
 
 

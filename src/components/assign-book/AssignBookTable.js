@@ -45,9 +45,9 @@ function Table(props) {
             <tbody>
 
 
-            {filteredList != null ? (
+            {filteredList !== null ? (
 
-                    (filteredList != 0 ?
+                    (filteredList !== 0 ?
                             (filteredList.map((filter, index) => {
                                     return (
                                         <tr>
@@ -63,7 +63,7 @@ function Table(props) {
                     )
 
                 ) :
-                (filteredList != 0 ?
+                (filteredList !== 0 ?
                         (categoryList.map((category, index) => {
                                 return (
                                     <tr>

@@ -1,6 +1,5 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert';
-import BreadCrumb from "../BreadCumb";
 import UserTable from "./UserTable";
 
 class AddUserForm extends React.Component {
@@ -82,7 +81,6 @@ class AddUserForm extends React.Component {
 
         return (
             <div>
-                <BreadCrumb {...this.props} />
                 <div className="row">
                     <div className="col-sm-4">
 
