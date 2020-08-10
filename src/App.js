@@ -6,7 +6,6 @@ import Switch from "react-bootstrap/Switch";
 import routes from "./routes";
 import ListGroup from "react-bootstrap/ListGroup";
 import BreadCrumb from "./components/BreadCrumb";
-import ReadBook from "./components/ReadBook";
 
 class App extends React.Component {
 
@@ -79,7 +78,7 @@ class App extends React.Component {
                                         component={(props) =>
                                             <div>
                                                 <BreadCrumb {...props} data={route}/>
-                                                <route.main {...props}/>
+                                                <route.main/>
                                             </div>
                                         }
                                     >
