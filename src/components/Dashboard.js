@@ -71,7 +71,7 @@ const Dashboard = (props) => {
                     (
                         bookList?.map((book, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{book.bookName}</td>
                                     <td>{book.bookAuthor}</td>

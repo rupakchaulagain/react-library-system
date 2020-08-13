@@ -54,9 +54,6 @@ class AssignBookForm extends React.Component {
         this.state.bookCategory.map((category, index) => {
 
             if (category.key === parseInt(this.state.bookCategoryId)) {
-
-                console.log("Matched Category..." + category.value)
-
                 categoryType = category.value;
             }
         })

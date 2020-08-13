@@ -6,8 +6,6 @@ function Table(props) {
 
     let bookList = props.bookList;
 
-    console.log("books=" + JSON.stringify(bookList))
-
     const NoBookFound = () => {
         return (
             <tr>

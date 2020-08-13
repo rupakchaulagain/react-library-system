@@ -52,7 +52,7 @@ class App extends React.Component {
                             <ListGroup style={{width: "300px", height: "850px"}}>
 
                                 {routes?.map((route, index) => (
-                                    <ListGroup.Item action href={route.path}
+                                    <ListGroup.Item key={index} action href={route.path}
                                                     onClick={
                                                         () => this.activeRoute(route.path)
                                                     }
@@ -86,6 +86,9 @@ class App extends React.Component {
                                     </Route>
 
                                 ))}
+                                {/*<ProtectedRoute exact path="/" component={Dashboard} />*/}
+                                {/*<Route path="*" component={() => "404 NOT FOUND"} />*/}
+
                             </Switch>
                         </div>
 

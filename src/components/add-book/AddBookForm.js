@@ -33,8 +33,6 @@ class AddBookForm extends React.Component {
 
         }
 
-        console.log(props)
-
     }
 
     handleInputChange = (e) => {
@@ -101,8 +99,6 @@ class AddBookForm extends React.Component {
 
         let book = this.state.bookList[index];
 
-        console.log(book)
-
         this.setState({
             bookName: book.bookName,
             bookAuthor: book.bookAuthor,
@@ -132,9 +128,6 @@ class AddBookForm extends React.Component {
             alertStatus: true
 
         });
-
-        console.log("Result=" + JSON.stringify(this.state.bookList))
-
     }
 
     closeAlert = () => {
