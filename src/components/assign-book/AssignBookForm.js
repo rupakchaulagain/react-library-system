@@ -7,21 +7,20 @@ class AssignBookForm extends React.Component {
     constructor(props) {
         super(props);
 
-        const {bookCategory}
-            = store.getState();
-
+        const state = store.getState();
+        const {bookCategory} = state.bookCategory
+        const {categoryList} = state.categoryList
 
         this.state = {
             bookName: '',
             bookCategoryId: '',
             bookCategoryValue: '',
-            categoryList: [],
             bookCategory: [...bookCategory],
+            categoryList: [...categoryList],
+            filteredList: null,
             bookCategorySearch: '',
 
         }
-
-        console.log("book category....",this.state.bookCategory)
 
     }
 
@@ -37,8 +36,6 @@ class AssignBookForm extends React.Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
 
-        let categoryList = [...this.state.categoryList];
-
         let categoryType = "";
         this.state.bookCategory.map((category, index) => {
 
@@ -47,14 +44,16 @@ class AssignBookForm extends React.Component {
             }
         })
 
-        categoryList.push({
-            bookName: this.state.bookName,
-            bookCategoryId: this.state.bookCategoryId,
-            bookCategoryValue: categoryType
-        });
+        store.dispatch({
+            type: "ASSIGN_BOOK",
+            payload: {
+                bookName: this.state.bookName,
+                bookCategoryId: this.state.bookCategoryId,
+                bookCategoryValue: categoryType
+            }
+        })
 
         this.setState({
-            categoryList,
             bookName: '',
             bookCategoryId: '',
             bookCategoryValue: ''
@@ -72,12 +71,11 @@ class AssignBookForm extends React.Component {
 
         console.log(name + ":" + value)
         let categoryList = [...this.state?.categoryList];
-        let filteredList = []
+        let filteredList=[]
 
         if (value === '-1') {
 
             this.setState({
-                categoryList,
                 filteredList: null,
                 bookName: '',
                 bookCategoryId: '',
@@ -130,7 +128,7 @@ class AssignBookForm extends React.Component {
                         <select className="form-control" name="bookCategoryId" required="required"
                                 onClick={this.handleInputChange}>
 
-                            {this.state.bookCategory.map((category,index) => {
+                            {this.state.bookCategory?.map((category, index) => {
                                 return (
                                     <option value={category.key}>{category.value}</option>
                                 )

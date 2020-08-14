@@ -6,8 +6,8 @@ function Table(props) {
     let filteredList = props.filteredList;
     let bookCategory = props.bookCategory;
 
-    console.log(categoryList);
-    console.log(filteredList);
+    console.log("F==",filteredList);
+    console.log("catF==",categoryList);
 
 
     const NoBookFound = () => {
@@ -49,7 +49,7 @@ function Table(props) {
 
             {filteredList !== null ? (
 
-                    // (filteredList !== 0 ?
+                    (filteredList.length !== 0 ?
                     (filteredList?.map((filter, index) => {
                             return (
                                 <tr key={index + 1}>
@@ -60,11 +60,12 @@ function Table(props) {
                             )
 
                         })
-                        // ) :
-                        // <NoBookFound/>
+                        ) :
+                        <NoBookFound/>
                     )
 
                 ) :
+                (categoryList.length!==0?
                 (categoryList?.map((category, index) => {
                         return (
                             <tr key={index + 1}>
@@ -74,9 +75,10 @@ function Table(props) {
                             </tr>
                         )
 
-                    })
+                    }
+                    )
 
-                )
+                ):<NoBookFound/>)
 
             }
 

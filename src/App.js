@@ -50,7 +50,7 @@ class App extends React.Component {
                             </ListGroup>
                         </div>
 
-                        <div style={{flex: 1, padding: "10px",}}>
+                        <div style={{flex: 1, padding: "10px"}}>
 
                             <Switch>
                                 {routes?.map((route, index) => (

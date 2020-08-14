@@ -1,15 +1,11 @@
 import bookCategory from "../data/book-category";
 
-export default (state = bookCategory, action) => {
+export default (state = {bookCategory}, action) => {
 
-    switch (action.type()) {
-
-        case '':
-
-        case '':
+    switch (action.type) {
 
         default:
+            return state;
 
     }
-    return state;
 }
