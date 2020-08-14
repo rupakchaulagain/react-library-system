@@ -7,6 +7,8 @@ function Table(props) {
     let bookCategory = props.bookCategory;
 
     console.log(categoryList);
+    console.log(filteredList);
+
 
     const NoBookFound = () => {
         return (
@@ -30,7 +32,7 @@ function Table(props) {
 
                         <option value="-1">All</option>
 
-                        {bookCategory.map(category => {
+                        {bookCategory?.map(category => {
                             return (
                                 <option key={category.key} value={category.key}>{category.value}</option>
                             )
@@ -47,39 +49,36 @@ function Table(props) {
 
             {filteredList !== null ? (
 
-                    (filteredList !== 0 ?
-                            (filteredList.map((filter, index) => {
-                                    return (
-                                        <tr>
-                                            <th scope="row">{index + 1}</th>
-                                            <td>{filter.bookCategoryValue}</td>
-                                            <td>{filter.bookName}</td>
-                                        </tr>
-                                    )
+                    // (filteredList !== 0 ?
+                    (filteredList?.map((filter, index) => {
+                            return (
+                                <tr key={index + 1}>
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{filter.bookCategoryValue}</td>
+                                    <td>{filter.bookName}</td>
+                                </tr>
+                            )
 
-                                })
-                            ) :
-                            <NoBookFound/>
+                        })
+                        // ) :
+                        // <NoBookFound/>
                     )
 
                 ) :
-                (filteredList !== 0 ?
-                        (categoryList.map((category, index) => {
-                                return (
-                                    <tr>
-                                        <th scope="row">{index + 1}</th>
-                                        <td>{category.bookCategoryValue}</td>
-                                        <td>{category.bookName}</td>
-                                    </tr>
-                                )
+                (categoryList?.map((category, index) => {
+                        return (
+                            <tr key={index + 1}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{category.bookCategoryValue}</td>
+                                <td>{category.bookName}</td>
+                            </tr>
+                        )
 
-                            })
-                        ) :
-                        <NoBookFound/>
+                    })
+
                 )
 
             }
-
 
             </tbody>
         </table>

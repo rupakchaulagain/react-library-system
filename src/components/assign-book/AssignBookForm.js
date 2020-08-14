@@ -1,38 +1,27 @@
 import React from 'react'
 import AssignBookTable from './AssignBookTable'
+import store from "../../store";
 
 class AssignBookForm extends React.Component {
 
     constructor(props) {
         super(props);
 
+        const {bookCategory}
+            = store.getState();
+
+
         this.state = {
             bookName: '',
             bookCategoryId: '',
             bookCategoryValue: '',
             categoryList: [],
-            bookCategory: [
-                {
-                    key: 1,
-                    value: "Non-Fiction"
-                },
-                {
-                    key: 2,
-                    value: "Fiction"
-                },
-                {
-                    key: 3,
-                    value: "Science Fiction"
-                },
-                {
-                    key: 4,
-                    value: "Biography"
-                }
-
-            ],
+            bookCategory: [...bookCategory],
             bookCategorySearch: '',
 
         }
+
+        console.log("book category....",this.state.bookCategory)
 
     }
 
@@ -82,9 +71,7 @@ class AssignBookForm extends React.Component {
         })
 
         console.log(name + ":" + value)
-
-        let categoryList = [...this.state.categoryList];
-
+        let categoryList = [...this.state?.categoryList];
         let filteredList = []
 
         if (value === '-1') {
@@ -143,7 +130,7 @@ class AssignBookForm extends React.Component {
                         <select className="form-control" name="bookCategoryId" required="required"
                                 onClick={this.handleInputChange}>
 
-                            {this.state.bookCategory.map(category => {
+                            {this.state.bookCategory.map((category,index) => {
                                 return (
                                     <option value={category.key}>{category.value}</option>
                                 )

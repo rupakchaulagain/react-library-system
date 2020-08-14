@@ -2,30 +2,22 @@ import React from 'react'
 
 import Table from './Table'
 import Alert from 'react-bootstrap/Alert';
+import store from "../../store";
 
 class AddBookForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        console.log("prop data=" + props.data)
+        const state = store.getState();
+        const {bookList} = state.bookList
+        const {book}=state.bookList
 
         this.state = {
             bookName: "",
             bookAuthor: "",
             bookPublishedDate: "",
-            bookList: [
-                {
-                    bookName: "Welcome to the future",
-                    bookAuthor: "By Not Elon Musk",
-                    bookPublishedDate: "2020/12/04",
-                },
-                {
-                    bookName: "Science",
-                    bookAuthor: "Rupak Chaulagain",
-                    bookPublishedDate: "2016/12/04",
-                },
-            ],
+            bookList: [...bookList],
             submitBtn: 'Add',
             submitFlag: '',
             alertMessage: '',
@@ -50,16 +42,16 @@ class AddBookForm extends React.Component {
 
         if (this.state.submitFlag === '') {
 
-            let bookList = [...this.state.bookList];
-
-            bookList.push({
-                bookName: this.state.bookName,
-                bookAuthor: this.state.bookAuthor,
-                bookPublishedDate: this.state.bookPublishedDate
-            });
+            store.dispatch({
+                type:"SUBMIT_FORM",
+                payload:{
+                    bookName: this.state.bookName,
+                    bookAuthor: this.state.bookAuthor,
+                    bookPublishedDate: this.state.bookPublishedDate
+                }
+            })
 
             this.setState({
-                bookList,
                 bookName: "",
                 bookAuthor: "",
                 bookPublishedDate: "",
@@ -72,15 +64,17 @@ class AddBookForm extends React.Component {
         //update Logic
         if (this.state.submitFlag === 'U') {
 
-            let book = this.state.bookList[(this.state.currentIndex)]
-
-            console.log(book.bookName);
-            book.bookName = this.state.bookName
-            book.bookAuthor = this.state.bookAuthor
-            book.bookPublishedDate = this.state.bookPublishedDate
+            store.dispatch({
+                type:"UPDATE_BOOK",
+                payload:{
+                    currentIndex: this.state.currentIndex,
+                    bookName: this.state.bookName,
+                    bookAuthor: this.state.bookAuthor,
+                    bookPublishedDate: this.state.bookPublishedDate
+                }
+            })
 
             this.setState({
-                bookList: this.state.bookList,
                 bookName: "",
                 bookAuthor: "",
                 bookPublishedDate: "",
@@ -113,12 +107,15 @@ class AddBookForm extends React.Component {
 
     deleteBook = index => {
 
-        console.log(index)
-        // debugger;;
-        this.state.bookList.splice(index, 1)
+        store.dispatch({
+            type:"DELETE_BOOK",
+            payload:{
+                currentIndex: index
+            }
+        })
+
 
         this.setState({
-            bookList: this.state.bookList,
             bookName: "",
             bookAuthor: "",
             bookPublishedDate: "",
@@ -146,65 +143,65 @@ class AddBookForm extends React.Component {
     render() {
 
         return (
-        <div>
-            <div className="row">
-                <div className="col-sm-4">
+            <div>
+                <div className="row">
+                    <div className="col-sm-4">
 
-                    <form onSubmit={this.handleFormSubmit}>
-                        <div className="form-group">
-                            <label>Name*</label>
-                            <input type="text" className="form-control" placeholder="Enter Book Name"
-                                   required="required"
-                                   name="bookName" value={this.state.bookName} onChange={this.handleInputChange}/>
-                        </div>
-                        <div className="form-group">
-                            <label>Author*</label>
-                            <input type="text" className="form-control" placeholder="Enter Author Name"
-                                   required="required"
-                                   name="bookAuthor" value={this.state.bookAuthor}
-                                   onChange={this.handleInputChange}/>
-                        </div>
+                        <form onSubmit={this.handleFormSubmit}>
+                            <div className="form-group">
+                                <label>Name*</label>
+                                <input type="text" className="form-control" placeholder="Enter Book Name"
+                                       required="required"
+                                       name="bookName" value={this.state.bookName} onChange={this.handleInputChange}/>
+                            </div>
+                            <div className="form-group">
+                                <label>Author*</label>
+                                <input type="text" className="form-control" placeholder="Enter Author Name"
+                                       required="required"
+                                       name="bookAuthor" value={this.state.bookAuthor}
+                                       onChange={this.handleInputChange}/>
+                            </div>
 
-                        <div className="form-group">
-                            <label>Published Date*</label>
-                            <input type="text" className="form-control" placeholder="Enter Published Date"
-                                   required="required"
-                                   name="bookPublishedDate" value={this.state.bookPublishedDate}
-                                   onChange={this.handleInputChange}/>
-                        </div>
+                            <div className="form-group">
+                                <label>Published Date*</label>
+                                <input type="text" className="form-control" placeholder="Enter Published Date"
+                                       required="required"
+                                       name="bookPublishedDate" value={this.state.bookPublishedDate}
+                                       onChange={this.handleInputChange}/>
+                            </div>
 
-                        <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
-                    </form>
-                    <br></br>
+                            <button type="submit" className="btn btn-primary">{this.state.submitBtn}</button>
+                        </form>
+                        <br></br>
+
+                    </div>
+                    <div className="col-sm-8">
+
+                        {this.state.alertStatus ? (
+                            <Alert variant="success" onClose={this.closeAlert} dismissible>
+                                <Alert.Heading>Success Alert</Alert.Heading>
+                                <p>
+                                    {this.state.alertMessage}
+                                </p>
+                            </Alert>
+                        ) : ""
+
+                        }
+
+                    </div>
 
                 </div>
-                <div className="col-sm-8">
 
-                    {this.state.alertStatus ? (
-                        <Alert variant="success" onClose={this.closeAlert} dismissible>
-                            <Alert.Heading>Success Alert</Alert.Heading>
-                            <p>
-                                {this.state.alertMessage}
-                            </p>
-                        </Alert>
-                    ) : ""
-
-                    }
+                <div className="row">
+                    <Table bookList={this.state.bookList}
+                           deleteBook={this.deleteBook}
+                           editBook={this.editBook}/>
 
                 </div>
-
             </div>
 
-            <div className="row">
-                <Table bookList={this.state.bookList}
-                       deleteBook={this.deleteBook}
-                       editBook={this.editBook}/>
-
-            </div>
-        </div>
-
-    )
-        ;
+        )
+            ;
 
     }
 

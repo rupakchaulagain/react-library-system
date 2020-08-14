@@ -12,21 +12,6 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            login: {
-                isUserLoggedIn: false
-            }
-
-        }
-
-    }
-
-    loginUser() {
-        this.setState({
-            login: {
-                isUserLoggedIn: true
-            }
-        })
     }
 
     activeRoute(path) {
@@ -34,7 +19,6 @@ class App extends React.Component {
         localStorage.setItem(
             "active", path
         )
-
 
     }
 

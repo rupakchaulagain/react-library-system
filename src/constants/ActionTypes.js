@@ -1,0 +1,4 @@
+export const INPUT_HANDLER='INPUT_HANDLER';
+export const SUBMIT_FORM='SUBMIT_FORM';
+export const UPDATE_BOOK='UPDATE_BOOK';
+export const DELETE_BOOK='DELETE_BOOK';

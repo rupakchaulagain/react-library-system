@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 function Table(props) {
 
     let bookList = props.bookList;
+   console.log("tavble data====",props.bookList)
 
     const NoBookFound = () => {
         return (
@@ -28,7 +29,7 @@ function Table(props) {
             </thead>
             <tbody>
 
-            {bookList.length !== 0 ?
+            {bookList?.length !== 0 ?
                 (
                     bookList?.map((book, index) => {
                         return (
