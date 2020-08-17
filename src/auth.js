@@ -1,22 +1,48 @@
 class Auth {
     constructor() {
-        this.authenticated=false
+        // this.authenticated = false
+        this.authenticated =localStorage.getItem("authenticated")
     }
 
-    login(cb){
-        this.authenticated=true
+    login(loginUser, cb) {
+
+
+        let userList = JSON.parse(localStorage.getItem("users"));
+
+        userList.map((user) => {
+
+            if (user.username === loginUser.username && user.password === loginUser.password) {
+                console.log("authorised user...")
+
+                localStorage.setItem("authenticated",true)
+                // this.authenticated = true
+                cb()
+            } else {
+
+                alert("failed")
+                localStorage.setItem("authenticated",false)
+                // this.setState({
+                //     loginError: true
+                // })
+
+            }
+
+        })
+
+
+    }
+
+    logout(cb) {
+        this.authenticated = false
         cb()
     }
 
-    logout() {
-        this.authenticated=false
-        // cb()
+    isAuthenticated() {
+        console.log("authenticated===",localStorage.getItem("authenticated"))
+        return this.authenticated;
+        // return  localStorage.getItem("authenticated");
     }
 
-
-        isAuthenticated(){
-            return this.authenticated;
-        }
-
 }
+
 export default new Auth()

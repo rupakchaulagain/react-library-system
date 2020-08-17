@@ -4,8 +4,15 @@ import AssignBookForm from "./components/assign-book/AssignBookForm";
 import AddUserForm from "./components/user/AddUserForm";
 import ReadBook from "./components/ReadBook";
 import Login from "./components/login/Login";
+import AppLayout from "./AppLayout";
 
 const routes = [
+
+    {
+        path: "/app",
+        exact: true,
+        main: AppLayout
+    },
 
     {
         path: "/dashboard",

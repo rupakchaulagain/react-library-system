@@ -24,8 +24,8 @@ class AddUserForm extends React.Component {
         }
 
     }
-
     handleInputChange = (e) => {
+        e.preventDefault();
 
         const {name, value} = e.target
         console.log(name,"=",value)

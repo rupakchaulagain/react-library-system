@@ -19,6 +19,6 @@ render()
 store.subscribe(render)
 
 function fancyLog() {
-    console.log("%c Rendered with 👉 👉👇", "background: purple; color: #FFF");
+    console.log("Rendered :::");
     console.log(store.getState());
 }

@@ -6,13 +6,9 @@ import Switch from "react-bootstrap/Switch";
 import BreadCrumb from "./components/BreadCrumb";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import {ProtectedRoute} from "./ProtectedRoute";
 
 class AppLayout extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-    }
 
     activeRoute(path) {
 
@@ -28,7 +24,6 @@ class AppLayout extends React.Component {
 
             <div>
                 <Header/>
-
                     <div style={{display: "flex"}}>
 
                         <div
@@ -52,10 +47,10 @@ class AppLayout extends React.Component {
 
                         <div style={{flex: 1, padding: "10px"}}>
 
-                            <Switch>
+                         {/*   <Switch>
                                 {routes?.map((route, index) => (
 
-                                    <Route
+                                    <ProtectedRoute
                                         key={index}
                                         path={route.path}
                                         exact={route.exact}
@@ -65,16 +60,17 @@ class AppLayout extends React.Component {
                                                 <route.main/>
                                             </div>
                                         }
+
+
                                     >
 
-                                    </Route>
+                                    </ProtectedRoute>
 
                                 ))}
-                            </Switch>
+                            </Switch>*/}
                         </div>
 
                     </div>
-
                 <Footer/>
 
             </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import './Login.css'
 import Alert from "react-bootstrap/Alert";
+import auth from "../../auth";
 
 class Login extends React.Component {
 
@@ -27,21 +28,14 @@ class Login extends React.Component {
 
         const username = this.state.username
         const password = this.state.password
-
-        console.log(this.state.username)
-        console.log(this.state.password)
-
-        if (username === 'admin' && username === 'admin') {
-            window.location.replace('/home')
-        } else {
-
-            this.setState({
-                loginError: true
-            })
-
-
+        let user={
+            username:username,
+            password:password
         }
 
+        auth.login(user,()=>{
+            this.props.history.push("/app")
+        })
 
     }
 
@@ -87,17 +81,11 @@ class Login extends React.Component {
                                                    required="required"/>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="remember-me" className="text-info"><span>Remember me</span>
-                                                <span><input id="remember-me" name="remember-me"
-                                                             type="checkbox"/></span></label><br/>
                                             <input type="submit" name="submit"
 
 
                                                    className="btn btn-info btn-md"
                                                    value="submit"/>
-                                        </div>
-                                        <div id="register-link" className="text-right">
-                                            <a href="#" className="text-info">Register here</a>
                                         </div>
                                     </form>
                                 </div>

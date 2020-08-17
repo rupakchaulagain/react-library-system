@@ -1,32 +1,41 @@
 import React from 'react';
 import Login from "./components/login/Login";
 import {BrowserRouter, Route} from "react-router-dom";
-import AppLayout from "./AppLayout";
-import Dashboard from "./components/Dashboard";
+import routes from "./routes";
+import BreadCrumb from "./components/BreadCrumb";
+import {ProtectedRoute} from "./ProtectedRoute";
 
-class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-    }
-
-
-    render() {
+function App() {
 
         return (
 
             <BrowserRouter>
+                <Route exact path="/" component={Login}/>
 
-                <Route path="/" exact component={Login}/>
-                {/*<Route path="/home" exact component={AppLayout}/>*/}
-                <Route path="/home" exact  render={props => <AppLayout {...props}/>}/>
+                {routes?.map((route, index) => (
 
+                    <ProtectedRoute
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={(props) =>
+                            <div>
+                                <BreadCrumb {...props} data={route}/>
+                                <route.main/>
+                            </div>
+                        }
+
+
+                    >
+
+                    </ProtectedRoute>
+
+                ))}
+
+                {/*<Route exact path="/app" render={props => <AppLayout{...props}/>}/>*/}
             </BrowserRouter>
 
-
         )
-    }
 
 }
 
