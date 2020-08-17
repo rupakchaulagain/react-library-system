@@ -1,21 +1,21 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert';
 import UserTable from "./UserTable";
+import store from "../../store";
 
 class AddUserForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        console.log("prop data=" + props.data)
+        const state = store.getState();
+        const {userList} = state.userList
 
         this.state = {
             name: "",
-            email: "",
             username: "",
             password: "",
-            usersList: [
-            ],
+            userList: [...userList],
             submitBtn: 'Add',
             submitFlag: '',
             alertMessage: '',
@@ -23,13 +23,12 @@ class AddUserForm extends React.Component {
 
         }
 
-        console.log(props)
-
     }
 
     handleInputChange = (e) => {
 
         const {name, value} = e.target
+        console.log(name,"=",value)
         this.setState({
             [name]: value
         })
@@ -41,19 +40,17 @@ class AddUserForm extends React.Component {
 
         if (this.state.submitFlag === '') {
 
-            let userList = [...this.state?.userList];
-
-            userList.push({
-                name: this.state.name,
-                email: this.state.email,
-                username: this.state.username,
-                password: this.state.password
-            });
+            store.dispatch({
+                type: "SIGN_UP",
+                payload: {
+                    name: this.state.name,
+                    username: this.state.username,
+                    password: this.state.password
+                }
+            })
 
             this.setState({
-                userList,
                 name: "",
-                email: "",
                 username: "",
                 password: "",
                 alertMessage: "User is added successfully...",
@@ -91,13 +88,6 @@ class AddUserForm extends React.Component {
                                        required="required"
                                        name="name" value={this.state.name} onChange={this.handleInputChange}/>
                             </div>
-                            <div className="form-group">
-                                <label>Author*</label>
-                                <input type="email" className="form-control" placeholder="Enter User email"
-                                       required="required"
-                                       name="email" value={this.state.email}
-                                       onChange={this.handleInputChange}/>
-                            </div>
 
                             <div className="form-group">
                                 <label>Username*</label>
@@ -108,7 +98,7 @@ class AddUserForm extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>Password*</label>
-                                <input type="password" className="form-control" placeholder="Enter Password"
+                                <input type="text" className="form-control" placeholder="Enter Password"
                                        required="required"
                                        name="password" value={this.state.password}
                                        onChange={this.handleInputChange}/>
@@ -138,7 +128,6 @@ class AddUserForm extends React.Component {
 
                 <div className="row">
                     <UserTable userList={this.state.userList}/>
-
                 </div>
             </div>
 

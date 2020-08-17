@@ -4,7 +4,9 @@ function UserTable(props) {
 
     let userList = props.userList;
 
-    console.log("users=" + JSON.stringify(userList))
+    console.log("user=",userList)
+
+    console.log("user repostiroy=",localStorage.getItem("users") )
 
     const NoUsersFound = () => {
         return (
@@ -22,8 +24,8 @@ function UserTable(props) {
             <tr>
                 <th scope="col">S.N.</th>
                 <th scope="col">Name</th>
-                <th scope="col">Email</th>
                 <th scope="col">Username</th>
+                <th scope="col">Password</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -33,11 +35,11 @@ function UserTable(props) {
                 (
                     userList?.map((user, index) => {
                         return (
-                            <tr>
+                            <tr key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user.name}</td>
-                                <td>{user.email}</td>
                                 <td>{user.username}</td>
+                                <td>{user.password}</td>
                                 <td>
                                     {/*<Button variant="primary" onClick={() => props.editBook(index)}>Edit</Button>{' '}*/}
                                     {/*<Button variant="danger"*/}

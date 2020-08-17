@@ -7,11 +7,7 @@ export default (state = {bookList}, action) => {
 
     switch (action.type) {
 
-        case actions.INPUT_HANDLER:
-            console.log(action.payload)
-            return [action.payload]
-
-        case actions.SUBMIT_FORM:
+        case actions.FORM_SUBMIT:
             bookList.push(action.payload)
             state = {
                 bookList

@@ -1,13 +1,14 @@
 import Dashboard from "./components/Dashboard";
 import AddBookForm from "./components/add-book/AddBookForm";
 import AssignBookForm from "./components/assign-book/AssignBookForm";
-import Test from "./components/test/Test";
 import AddUserForm from "./components/user/AddUserForm";
 import ReadBook from "./components/ReadBook";
+import Login from "./components/login/Login";
 
 const routes = [
+
     {
-        path: "/",
+        path: "/dashboard",
         exact: true,
         menu: "Dashboard",
         main: Dashboard
@@ -31,10 +32,9 @@ const routes = [
         main: AddUserForm
     },
     {
-        path: "/components",
+        path: "/login",
         exact: true,
-        menu: "Components",
-        main: Test
+        main: Login
     },
     {
         path: "/readBook/:bookName",
