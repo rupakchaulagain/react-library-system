@@ -6,10 +6,6 @@ function Table(props) {
     let filteredList = props.filteredList;
     let bookCategory = props.bookCategory;
 
-    console.log("F==",filteredList);
-    console.log("catF==",categoryList);
-
-
     const NoBookFound = () => {
         return (
             <tr>

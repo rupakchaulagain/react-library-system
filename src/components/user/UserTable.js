@@ -4,10 +4,6 @@ function UserTable(props) {
 
     let userList = props.userList;
 
-    console.log("user=",userList)
-
-    console.log("user repostiroy=",localStorage.getItem("users") )
-
     const NoUsersFound = () => {
         return (
             <tr>
