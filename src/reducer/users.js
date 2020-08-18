@@ -1,7 +1,7 @@
 import * as actions from '../constants/ActionTypes'
 
 export default (state = {
-    userList: localStorage.getItem('users')?JSON.parse(localStorage.getItem('users')) :[]
+    userList: localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) :[]
 }, action) => {
 
     let userList = [...state.userList]
@@ -11,7 +11,7 @@ export default (state = {
         case actions.SIGN_UP:
 
             userList.push(action.payload)
-            if ((localStorage.getItem('users'))===null) {
+            if ((localStorage.getItem('users')) === null) {
 
                 localStorage.setItem(
                     "users", JSON.stringify(userList)

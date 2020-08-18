@@ -16,7 +16,8 @@ function App() {
             <Route exact path="/" component={
                 localStorage.getItem("authenticated") === true ||
                 localStorage.getItem("authenticated") !== null ?
-                    Dashboard : Login
+                    Dashboard :
+                    Login
             }/>
             <Route exact path="/signup" component={AddUserForm}/>
 

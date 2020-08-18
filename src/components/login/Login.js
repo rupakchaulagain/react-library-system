@@ -13,6 +13,9 @@ class Login extends React.Component {
             userNotFoundError: false
         }
 
+        localStorage.setItem(
+            "users", JSON.stringify([{name: 'admin', username: 'admin', password: 'admin'}]))
+
     }
 
     handleInputChange = (e) => {
