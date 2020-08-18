@@ -8,5 +8,5 @@ export default combineReducers({
     bookList,
     bookCategory,
     categoryList,
-    userList,
+    userList
 })

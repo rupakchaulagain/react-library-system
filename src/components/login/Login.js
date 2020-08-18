@@ -34,7 +34,7 @@ class Login extends React.Component {
         }
 
         auth.login(user,()=>{
-            this.props.history.push("/app")
+            this.props.history.push("/dashboard")
         })
 
     }

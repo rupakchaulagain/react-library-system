@@ -39,7 +39,7 @@ class Auth {
 
     isAuthenticated() {
         console.log("authenticated===",localStorage.getItem("authenticated"))
-        return this.authenticated;
+        return localStorage.getItem("authenticated");
         // return  localStorage.getItem("authenticated");
     }
 

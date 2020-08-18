@@ -8,9 +8,8 @@ const Header = () => {
 
     function logout() {
 
-        localStorage.setItem("authenticated", false)
+        localStorage.removeItem("authenticated")
         window.location.replace('/')
-
 
     }
 
@@ -19,7 +18,6 @@ const Header = () => {
         <Navbar bg="primary" variant="dark">
             <Navbar.Brand href="/">Library System</Navbar.Brand>
             <Nav className="mr-auto">
-                {/*<Nav.Link href="#home">Home</Nav.Link>*/}
             </Nav>
             <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2"/>

@@ -1,9 +1,13 @@
 import bookList from "../book-data";
 import * as actions from '../constants/ActionTypes'
 
+
 export default (state = {bookList}, action) => {
 
+
     let bookList = [...state.bookList]
+
+
 
     switch (action.type) {
 
@@ -35,8 +39,4 @@ export default (state = {bookList}, action) => {
 
             return state;
     }
-
-    // console.log("reducer data==", state)
-    //
-    // return state;
 }
