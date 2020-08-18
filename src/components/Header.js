@@ -16,7 +16,7 @@ const Header = () => {
 
     return (
         <Navbar bg="primary" variant="dark">
-            <Navbar.Brand href="/">Library System</Navbar.Brand>
+            <Navbar.Brand href="/dashboard">Library System</Navbar.Brand>
             <Nav className="mr-auto">
             </Nav>
             <Form inline>

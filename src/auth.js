@@ -8,7 +8,6 @@ class Auth {
 
             if (user.username === loginUser.username && user.password === loginUser.password) {
 
-                console.log("authorised user...")
                localStorage.setItem("authenticated",true)
 
                 cb()

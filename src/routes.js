@@ -8,11 +8,6 @@ import AppLayout from "./AppLayout";
 
 const routes = [
 
-    {
-        path: "/app",
-        exact: true,
-        main: AppLayout
-    },
 
     {
         path: "/dashboard",
@@ -37,11 +32,6 @@ const routes = [
         exact: true,
         menu: "User Management",
         main: AddUserForm
-    },
-    {
-        path: "/login",
-        exact: true,
-        main: Login
     },
     {
         path: "/readBook/:bookName",
