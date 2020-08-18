@@ -1,5 +1,4 @@
 import React from "react";
-import BreadCrumb from "./components/BreadCrumb";
 
 class AppLayout extends React.Component {
 

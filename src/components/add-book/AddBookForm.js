@@ -11,7 +11,6 @@ class AddBookForm extends React.Component {
 
         const state = store.getState();
         const {bookList} = state.bookList
-        const {book}=state.bookList
 
         this.state = {
             bookName: "",
@@ -134,7 +133,7 @@ class AddBookForm extends React.Component {
 
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         setTimeout(() => this.setState({
             alertStatus: false
         }), 4000);

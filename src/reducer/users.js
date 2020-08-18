@@ -32,22 +32,6 @@ export default (state = {
 
             return state
 
-        // case actions.UPDATE:
-        //     let user = userList[(action.payload.currentIndex)]
-        //     user.userFullName = action.payload.userFullName
-        //     user.userName = action.payload.userName
-        //     user.password = action.payload.password
-        //     return state
-        //
-        // case actions.DELETE:
-        //
-        //     userList.splice(action.payload.currentIndex, 1)
-        //     state = {
-        //         userList
-        //     }
-        //
-        //     return state
-
         default:
             return state;
     }
