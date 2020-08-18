@@ -9,7 +9,8 @@ class Login extends React.Component {
         super(props);
 
         this.state = {
-            loginError: false
+            loginError: false,
+            userNotFoundError: false
         }
 
     }
@@ -28,15 +29,44 @@ class Login extends React.Component {
 
         const username = this.state.username
         const password = this.state.password
-        let user={
-            username:username,
-            password:password
+
+
+        let userList = JSON.parse(localStorage.getItem("users"));
+
+        if (userList != null) {
+            userList.map((user) => {
+
+                if (user.username === username && user.password === password) {
+
+                    localStorage.setItem("authenticated", true)
+                    this.props.history.push("/dashboard")
+
+                } else {
+
+                    localStorage.setItem("authenticated", false)
+                    this.showAlert()
+
+                }
+
+            })
+        } else {
+          this.showUserNotFoundAlert()
         }
 
-        auth.login(user,()=>{
-            this.props.history.push("/dashboard")
-        })
+    }
 
+    showAlert() {
+        this.setState({
+            userNotFoundError: false,
+            loginError: true
+        })
+    }
+
+    showUserNotFoundAlert() {
+        this.setState({
+            userNotFoundError: true,
+            loginError: false
+        })
     }
 
     render() {
@@ -48,6 +78,10 @@ class Login extends React.Component {
 
                     <h3 className="text-center text-white pt-5">Login form</h3>
                     <div className="container">
+
+                        {this.state.userNotFoundError === true ? <Alert variant="danger">
+                            <Alert.Heading>User Not Found</Alert.Heading>
+                        </Alert> : null}
 
                         {this.state.loginError === true ? <Alert variant="danger">
                             <Alert.Heading>Login Failed</Alert.Heading>

@@ -28,7 +28,6 @@ class AddUserForm extends React.Component {
         e.preventDefault();
 
         const {name, value} = e.target
-        console.log(name,"=",value)
         this.setState({
             [name]: value
         })
