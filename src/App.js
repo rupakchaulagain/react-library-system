@@ -1,22 +1,23 @@
 import React from 'react';
 import Login from "./components/login/Login";
-import {BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import routes from "./routes";
 import {ProtectedRoute} from "./ProtectedRoute";
 import AppLayout from "./AppLayout";
 import AddUserForm from "./components/user/AddUserForm";
-import Dashboard from "./components/Dashboard";
+import Switch from "react-bootstrap/Switch";
 
 function App() {
 
     return (
 
-        <BrowserRouter>
+        <HashRouter>
+            <Switch>
 
-            <Route exact path="/" component={
-                localStorage.getItem("authenticated") === true ||
-                localStorage.getItem("authenticated") !== null ?
-                    Dashboard :
+            <Route exact path="/login" component={
+                // localStorage.getItem("authenticated") === true ||
+                // localStorage.getItem("authenticated") !== null ?
+                //     Dashboard :
                     Login
             }/>
             <Route exact path="/signup" component={AddUserForm}/>
@@ -39,7 +40,9 @@ function App() {
                 </ProtectedRoute>
 
             ))}
-        </BrowserRouter>
+
+            </Switch>
+        </HashRouter>
 
     )
 
