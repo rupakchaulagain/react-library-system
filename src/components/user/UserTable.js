@@ -1,4 +1,13 @@
 import React from 'react'
+import TableRowHeaders from "../../hoc/TableRowHeaders";
+
+let headers = [
+    "S.N.",
+    "Name",
+    "Username",
+    "Password",
+    "Actions",
+]
 
 function UserTable(props) {
 
@@ -17,13 +26,8 @@ function UserTable(props) {
 
         <table className="table">
             <thead>
-            <tr>
-                <th scope="col">S.N.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Username</th>
-                <th scope="col">Password</th>
-                <th scope="col">Actions</th>
-            </tr>
+            <TableRowHeaders
+                headers={headers}/>
             </thead>
             <tbody>
 
@@ -45,7 +49,7 @@ function UserTable(props) {
                         )
 
                     })
-                ):
+                ) :
                 <NoUsersFound/>
 
             }

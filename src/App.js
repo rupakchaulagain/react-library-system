@@ -5,16 +5,14 @@ import routes from "./routes";
 import {ProtectedRoute} from "./ProtectedRoute";
 import AppLayout from "./AppLayout";
 import AddUserForm from "./components/user/AddUserForm";
-import Switch from "react-bootstrap/Switch";
 
 function App() {
 
     return (
 
         <HashRouter>
-            <Switch>
 
-            <Route exact path="/login" component={
+            <Route exact path="/" component={
                 // localStorage.getItem("authenticated") === true ||
                 // localStorage.getItem("authenticated") !== null ?
                 //     Dashboard :
@@ -41,7 +39,6 @@ function App() {
 
             ))}
 
-            </Switch>
         </HashRouter>
 
     )

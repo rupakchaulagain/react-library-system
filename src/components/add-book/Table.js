@@ -1,6 +1,14 @@
 import React from 'react'
 
 import Button from 'react-bootstrap/Button';
+import TableRowHeaders from "../../hoc/TableRowHeaders";
+
+let headers = [
+    "S.N.",
+    "Name",
+    "Author",
+    "Actions"
+]
 
 function Table(props) {
 
@@ -12,18 +20,19 @@ function Table(props) {
             </tr>
         )
 
+
+
     }
 
     return (
 
         <table className="table">
+
             <thead>
-            <tr>
-                <th scope="col">S.N.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Author</th>
-                <th scope="col">Actions</th>
-            </tr>
+
+            <TableRowHeaders
+                headers={headers}/>
+
             </thead>
             <tbody>
 
