@@ -33,7 +33,7 @@ class AppLayout extends React.Component {
                             {this.props.routes?.map((route, index) => (
                                 <ListGroup.Item
                                     key={index}
-                                    action to={route.path}
+                                    action href={"/#"+route.path}
                                     onClick={
                                         () => this.activeRoute(route.path)
                                     }

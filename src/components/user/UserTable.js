@@ -41,9 +41,6 @@ function UserTable(props) {
                                 <td>{user.username}</td>
                                 <td>{user.password}</td>
                                 <td>
-                                    {/*<Button variant="primary" onClick={() => props.editBook(index)}>Edit</Button>{' '}*/}
-                                    {/*<Button variant="danger"*/}
-                                    {/*        onClick={() => props.deleteUser(index)}>Delete</Button>{' '}*/}
                                 </td>
                             </tr>
                         )

@@ -20,8 +20,6 @@ function Table(props) {
             </tr>
         )
 
-
-
     }
 
     return (

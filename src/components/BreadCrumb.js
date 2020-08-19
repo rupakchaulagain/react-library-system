@@ -10,8 +10,8 @@ const BreadCrumb = (props) => {
     return (
 
         <Breadcrumb>
-            <Breadcrumb.Item href="/dashboard">Home</Breadcrumb.Item>
-            <Breadcrumb.Item href={routes?.path}>
+            <Breadcrumb.Item href="/#/dashboard">Home</Breadcrumb.Item>
+            <Breadcrumb.Item href={"/#"+routes?.path}>
                 {routes?.menu}
             </Breadcrumb.Item>
 

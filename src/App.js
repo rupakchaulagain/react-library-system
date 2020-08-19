@@ -12,11 +12,14 @@ function App() {
 
         <HashRouter>
 
-            <Route exact path="/" component={
-                // localStorage.getItem("authenticated") === true ||
-                // localStorage.getItem("authenticated") !== null ?
-                //     Dashboard :
-                    Login
+            <Route exact path="/" component={(props)=>
+                localStorage.getItem("authenticated") === true ||
+                localStorage.getItem("authenticated") !== null ?
+                    <AppLayout
+                        {...props}
+                        routes={routes}
+                        route={routes[0]}/> :
+                    <Login  {...props}/>
             }/>
             <Route exact path="/signup" component={AddUserForm}/>
 
