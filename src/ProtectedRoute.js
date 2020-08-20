@@ -9,7 +9,7 @@ export const ProtectedRoute = ({
         <Route
             {...rest}
             render={props => {
-                if (localStorage.getItem("authenticated")===true) {
+                if (localStorage.getItem("authenticated")) {
                     return <Component {...props} />;
                 } else {
                     return (
