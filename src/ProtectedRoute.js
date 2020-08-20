@@ -1,6 +1,5 @@
 import React from "react";
-import {Route,BrowserRouter, Redirect} from "react-router-dom";
-import auth from "./auth";
+import {Redirect, Route} from "react-router-dom";
 
 export const ProtectedRoute = ({
                                    component: Component,
@@ -10,7 +9,7 @@ export const ProtectedRoute = ({
         <Route
             {...rest}
             render={props => {
-                if (auth.isAuthenticated()) {
+                if (localStorage.getItem("authenticated")===true) {
                     return <Component {...props} />;
                 } else {
                     return (
