@@ -7,7 +7,7 @@ import './css/App.css'
 import store from "./store";
 
 const render = () => {
-    fancyLog()
+    log()
     ReactDOM.render(
         <App/>,
         document.getElementById('root')
@@ -18,7 +18,7 @@ const render = () => {
 render()
 store.subscribe(render)
 
-function fancyLog() {
+function log() {
     console.log("Rendered :::");
     console.log(store.getState());
 }

@@ -3,7 +3,6 @@ import BreadCrumb from "./components/BreadCrumb";
 import Header from "./components/Header";
 import ListGroup from "react-bootstrap/ListGroup";
 import Footer from "./components/Footer";
-import {ProtectedRoute} from "./ProtectedRoute";
 
 class AppLayout extends React.Component {
 

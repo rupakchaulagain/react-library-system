@@ -12,6 +12,8 @@ function App() {
 
         <HashRouter>
 
+            <Route exact path="/signup" component={AddUserForm}/>
+
             <Route exact path="/" component={(props)=>
                 localStorage.getItem("authenticated") === true ||
                 localStorage.getItem("authenticated") !== null ?
@@ -21,7 +23,6 @@ function App() {
                         route={routes[0]}/> :
                     <Login  {...props}/>
             }/>
-            <Route exact path="/signup" component={AddUserForm}/>
 
             {routes?.map((route, index) => (
 
